@@ -1,0 +1,330 @@
+:root {
+    /* --- Paleta de Colores --- */
+    --primary-color: #5d5dff; /* Azul/Púrpura Vibrante (Botones, Bordes) */
+    --primary-dark: #3f2b96; /* Púrpura Oscuro (Encabezados de Tabla) */
+    --secondary-color: #a8c0ff; /* Azul Claro/Lavanda */
+    --text-color: #212529; /* Texto Principal */
+    --background-color: #f0f2f5; /* Fondo más claro (Detrás de Cards) */
+    
+    /* MODIFICADO: Cambiado a blanco semitransparente para mejor legibilidad del texto */
+    --card-bg: rgba(255, 255, 255, 0.75); 
+    
+    --blur-intensity: 10px; /* Reducido para un blur más suave */
+    --vibrant-text-color: #ffffff; /* Color Blanco Puro (Texto de Cabecera) */
+
+    /* --- Variables de Diseño --- */
+    --transition-speed: 0.3s;
+    --border-radius-xl: 1rem; /* Aumentado a 1rem para más suavidad */
+    --border-radius-lg: 0.5rem;
+    
+    /* --- COLORES ESPECÍFICOS DEL RECIBO --- */
+    --success-color: #228B22; /* Forest Green (NETO A COBRAR) */
+    --success-dark: #1E7E34;
+    --header-text-color: #0d6efd; /* Azul para encabezados de recibo (pantalla) */
+    --header-bg-color: #e9f5ff; /* Fondo azul muy claro para encabezados (pantalla) */
+}
+
+/* ================================
+    ESTILOS BASE Y FONDO PRINCIPAL
+    ================================ */
+body {
+    /* Si la fuente Inter no está enlazada, la eliminamos para evitar errores de consola */
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; 
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    background-color: var(--background-color); /* Fallback de color */
+}
+
+/* *** CONFIGURACIÓN DE IMAGEN DE FONDO *** */
+.background-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Imagen de fondo (ajusta el nombre del archivo si es local) */
+    background-image: url('https://media.lmneuquen.com/p/d21cb41a03394d8ed4b8046ae1db49a4/adjuntos/198/imagenes/006/888/0006888071/1200x675/smart/colegio-brentana-1200-jpgjpeg.jpeg'); 
+    background-size: cover;      
+    background-position: center;  
+    background-repeat: no-repeat;  
+    
+    /* Efecto de Blur y Oscurecimiento */
+    filter: brightness(0.4) blur(4px); /* Oscurecido un poco más para alto contraste */
+    z-index: -1;
+}
+
+/* ================================
+    ESTILOS DE GLASSMORPHISM (CABECERA Y CARDS)
+    ================================ */
+.app-header {
+    background-color: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(var(--blur-intensity)); 
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); 
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    border-radius: var(--border-radius-xl);
+    padding: 2rem !important; 
+    margin-bottom: 2rem !important;
+}
+
+/* Estilo del texto en la cabecera */
+.app-header h1, .app-header p {
+    color: var(--vibrant-text-color) !important; 
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7), 0 0 5px rgba(0, 0, 0, 0.5); 
+    font-weight: 900 !important; 
+}
+
+/* Card General (Contenedores) */
+.card {
+    border: none;
+    border-radius: var(--border-radius-xl);
+    /* Usa la variable de card-bg modificada (blanco semitransparente) */
+    background-color: var(--card-bg); 
+    backdrop-filter: blur(var(--blur-intensity)); 
+    box-shadow: 0 0.75rem 3rem rgba(0, 0, 0, 0.15); 
+    transition: all var(--transition-speed); 
+}
+
+/* ================================
+    ESTILOS DE SUBIDA DE ARCHIVO
+    ================================ */
+
+.file-upload-dropzone {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 2px dashed #ccc;
+    border-radius: var(--border-radius-lg);
+    background-color: #ffffff; /* Fondo blanco sólido para mejor contraste */
+    transition: border-color var(--transition-speed);
+}
+
+.file-upload-dropzone:hover {
+    border-color: var(--primary-color);
+}
+
+
+/* ================================
+    ESTILOS DE BOTONES
+    ================================ */
+
+.btn {
+    border-radius: 0.75rem; 
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all var(--transition-speed);
+}
+
+/* Botón Subir Archivo (Principal/Procesar) */
+.btn-success {
+    background-color: var(--success-color); 
+    border: none;
+    box-shadow: 0 4px 6px rgba(34, 139, 34, 0.2);
+}
+
+.btn-success:hover {
+    background-color: var(--success-dark); 
+    box-shadow: 0 6px 8px rgba(34, 139, 34, 0.3);
+}
+
+/* Botón Procesar más grande y centrado */
+.btn-upload {
+    font-size: 0.95rem; /* Más legible */
+    padding: 0.5rem 1rem; /* Más espaciado */
+    border-radius: 0.5rem; 
+    font-weight: 700;
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    max-width: 350px; /* Limita el ancho máximo para que no se vea gigante */
+    display: block;
+    margin: 1rem auto 0 auto; /* Lo centra y da un margen superior */
+}
+
+
+/* Botón 'Ver Recibo' en la tabla (se usa btn-sm-custom en el HTML, pero no está definido) */
+/* Asumo que usarás btn-primary o btn-info para 'Ver Recibo' */
+.btn-sm-custom {
+    /* Define este estilo para el botón de acción en la tabla */
+    font-size: 0.8rem !important; 
+    padding: 0.2rem 0.6rem !important;
+    border-radius: 0.5rem;
+}
+
+
+/* ================================
+    ESTILOS DE LISTADO DE EMPLEADOS PROCESADOS
+    ================================ */
+
+/* *** ENCABEZADO DE LA TABLA DE EMPLEADOS *** */
+.table thead th {
+    font-weight: 700;
+    color: var(--vibrant-text-color); 
+    background-color: var(--primary-dark); 
+    border: none;
+    padding: 0.75rem 1rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.table tbody tr {
+    background-color: #f8f9fa; /* Color de fondo base claro */
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #e2e6ea; /* Un gris muy suave al pasar el mouse */
+    transform: scale(1.005);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ================================
+    ESTILOS ESPECÍFICOS DEL RECIBO (Modal)
+    ================================ */
+
+/* Contenedor del recibo dentro del modal para impresión */
+#recibo-content {
+    /* Aquí se sugiere agregar la clase 'recibo-container' desde JS
+    o envolver el contenido generado en un div con esa clase. */
+    padding: 1rem; /* Padding base */
+}
+
+/* Color y Sombra del Neto a Cobrar */
+.neto-cobrar-cell {
+    background-color: var(--success-color); 
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    box-shadow: 0 0 15px rgba(34, 139, 34, 0.5); 
+}
+
+/* Encabezados de tabla dentro del recibo */
+.recibo-table thead th {
+    background-color: var(--header-bg-color); 
+    color: var(--header-text-color); 
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    border: 1px solid #cfe2ff !important; 
+}
+
+
+/* ================================
+    MEDIA QUERY PARA PANTALLAS PEQUEÑAS
+    ================================ */
+@media (max-width: 768px) {
+    .app-header h1 {
+        font-size: 1.75rem !important; 
+    }
+    .modal-dialog.modal-xl {
+        max-width: 95vw !important; 
+    }
+    .recibo-table {
+        font-size: 0.75rem; 
+    }
+    .neto-cobrar-cell {
+        font-size: 1.2rem;
+    }
+    .btn-sm-custom {
+        padding: 0.1rem 0.3rem !important; 
+        font-size: 0.75rem !important;
+    }
+    .btn-upload {
+        max-width: 100%; /* Ocupa todo el ancho en móviles */
+    }
+}
+
+/* ---------------------------------------------------- */
+
+/* ================================
+    ESTILOS DE IMPRESIÓN (@media print)
+    ================================ */
+@media print {
+    /* Oculta el fondo (gradient) y otros elementos de la aplicación */
+    .background-gradient, 
+    .app-header, 
+    .container > .row:not(#recibo-content), 
+    .modal-header, 
+    .modal-footer {
+        display: none !important; 
+    }
+    
+    /* Muestra solo el modal-content (el recibo) */
+    .modal-content, .modal-body, #recibo-content {
+        visibility: visible; 
+        box-shadow: none !important; 
+        border: none !important; 
+        background-color: white !important; 
+        padding: 0 !important;
+        margin: 0 !important;
+        position: static;
+        width: auto !important;
+        max-width: none !important;
+        float: none !important;
+        /* Asegura que el contenido se imprima en color si es posible */
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    /* 1. Resetear el cuerpo del documento para la impresión */
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        background-color: white !important;
+    }
+
+    /* 2. El contenedor del recibo (el contenido dentro del modal-body)
+          se convierte en el centro de la página A4 con sus propios márgenes. */
+    #recibo-content {
+        /* Usar medidas absolutas para controlar el espacio A4 */
+        width: 19.5cm !important; 
+        margin: 0.75cm auto !important; 
+        padding: 0 !important; 
+        
+        /* Asegura que el contenido se imprima sin escalado (el navegador debe estar en 100%) */
+        page-break-inside: avoid;
+    }
+
+    /* 3. Asegurar que los elementos del modal no interfieran */
+    .modal-dialog, .modal-body {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: static !important;
+    }
+    
+    /* AJUSTE PARA TABLA: hacerla compacta y legible */
+    .recibo-table {
+        font-size: 0.85rem; 
+    }
+    .recibo-table th, .recibo-table td {
+        padding: 0.3rem 0.5rem !important; 
+    }
+    
+    /* Forzar la visibilidad y el color del Neto a Cobrar */
+    .neto-cobrar-cell {
+        background-color: var(--success-color) !important; 
+        color: white !important;
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        font-size: 1.3rem !important; 
+        font-weight: bold;
+    }
+    
+    /* Forzar el color de los encabezados de tabla */
+    .recibo-table thead th {
+        background-color: #e6f7ee !important; 
+        color: #1e7e34 !important; 
+        -webkit-print-color-adjust: exact !important; 
+        color-adjust: exact !important;
+    }
+    
+    /* Tablas y elementos que deben permanecer juntos */
+    .recibo-table, .info-section, .recibo-container .row.mt-4 {
+        page-break-inside: avoid;
+    }
+}

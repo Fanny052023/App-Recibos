@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Aplicación Web Recibos </title>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Plataforma de Recibos de Sueldo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-gradient"></div>
+
+    <div class="container py-5">
+        <header class="app-header text-center mb-5 p-4 mx-auto" style="max-width: 900px;">
+            <h1 class="display-5 fw-bold text-white text-shadow-lg">
+                GESTIÓN DE RECIBOS DE SUELDOS
+            </h1>
+            <p class="lead mb-0 text-white text-shadow-lg">
+                Aplicación Web Carga y Visualización de CSV
+            </p>
+        </header>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card p-4 shadow-lg">
+                    <h2 class="card-title text-center mb-4 text-primary-dark">Subir Archivo de Liquidación (.csv)</h2>
+                    
+                    <form id="uploadForm">
+                        <div class="row align-items-center mb-4 g-3">
+                            <div class="col-md-5">
+                                <label for="csvFile" class="btn btn-primary w-100 py-2">
+                                    <i class="bi bi-folder2-open me-2"></i> 
+                                    Seleccionar Archivo
+                                </label>
+                                <input type="file" id="csvFile" accept=".csv" class="d-none">
+                            </div>
+
+                            <div class="col-md-7">
+                                <div id="fileDropzone" class="file-upload-dropzone p-3 border rounded">
+                                    <p id="uploadedFileName" class="upload-text mb-0 text-muted">
+                                        <i class="bi bi-filetype-csv me-2 text-secondary"></i>
+                                        Arrastra un archivo aquí o haz clic en "Seleccionar Archivo"...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="button" id="uploadBtn" class="btn btn-sm btn-success btn-upload w-100 py-2" disabled>
+                            <i class="bi bi-cloud-arrow-up-fill me-2"></i> Procesar y Cargar Planilla
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-10">
+                <div class="card p-4 shadow-lg">
+                    <h2 class="card-title text-center mb-4 text-primary-dark">Listado de Empleados Procesados</h2>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle" id="csvTable">
+                            <thead>
+                                <tr>
+                                    <th>Legajo/Ficha</th>
+                                    <th>Agente (Nombre y Apellido)</th>
+                                    <th>Período</th>
+                                    <th class="text-end">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                </tbody>
+                        </table>
+                    </div>
+                    <p id="no-data-message" class="text-center text-muted mt-3">Sube un archivo para ver la lista de recibos aquí.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="reciboModal" tabindex="-1" aria-labelledby="reciboModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reciboModalLabel">Recibo de Haberes Detallado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body p-4" id="recibo-content">
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" id="printBtn">
+                        <i class="bi bi-printer-fill me-1"></i> Imprimir Recibo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script><script  src="./script.js"></script>
+
+  </body>
+  
+</html>
